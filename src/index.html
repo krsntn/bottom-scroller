@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+        scroll-behavior: smooth;
+        text-decoration: none;
+      }
+
+      body {
+        height: calc(100vh * 10);
+      }
+
+      .center {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .bottomCenter {
+        position: relative;
+        margin-top: calc(100vh * 9);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .button {
+        background-color: #666;
+        color: white;
+        font-size: 24px;
+        padding: 15px 20px;
+        border-radius: 10px;
+      }
+
+      .button:hover {
+        background-color: #444;
+      }
+
+      .button:active {
+        background-color: #333;
+      }
+
+      .description {
+        width: 280px;
+        padding-top: 20px;
+        font-size: 0.8rem;
+      }
+
+      .author {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+      }
+    </style>
+
+    <title>Bottom Scroller</title>
+  </head>
+  <body>
+    <div class="center">
+      <div class="container">
+        <a
+          class="button"
+          href="javascript: (function(){ console.log('scroll start ======================'); stopButton(); let height = 0; let retryAttempt = 0; const scroller = setInterval(() => { if (height !== document.body.scrollHeight) { height = document.body.scrollHeight; window.scrollTo(0, document.body.scrollHeight); retryAttempt = 0; } else if (retryAttempt < 3) { retryAttempt++; } else { stopScrolling(); } }, 500); function stopButton() { let button = document.createElement('button'); button.innerHTML = 'Stop Scrolling'; button.id = 'stopScrollBottomButton'; button.style.backgroundColor = 'red'; button.style.color = 'white'; button.style.fontSize = '18px'; button.style.padding = '10px 15px'; button.style.position = 'fixed'; button.style.bottom = '0px'; button.style.left = '20px'; button.style.zIndex = '100001'; button.style.cursor = 'pointer'; button.style.borderRadius = '5px'; button.addEventListener('click', function() { stopScrolling(); }); let body = document.querySelector('body'); body.appendChild(button); } function stopScrolling() { clearInterval(scroller); console.log('scroll end ========================'); let button = document.querySelector('#stopScrollBottomButton'); button.parentNode.removeChild(button); } })();"
+        >
+          Bottom Scroller
+        </a>
+        <p class="description">
+          Drag button to bookmarks bar, it will works on other web pages too.
+        </p>
+      </div>
+    </div>
+    <div class="bottomCenter">
+      <div class="container">
+        <p>Bottom of the page</p>
+        <p class="author">
+          Made by <a href="https://github.com/krsntn">Karson</a>.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
